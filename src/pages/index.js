@@ -1,11 +1,27 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
-
+/* eslint-disable @next/next/no-img-element */
+import Head from 'next/head';
+import { useEffect } from 'react';
+import { MdOutlineAccountCircle } from 'react-icons/md';
+import { AiOutlineInstagram } from 'react-icons/ai';
+import { BsTwitter } from 'react-icons/bs';
+import { HiArrowNarrowDown } from 'react-icons/hi';
+import Content from '@/components/Content';
+// import Image from 'next/image';
 export default function Home() {
+  useEffect(() => {
+    const items = document.querySelectorAll('.item');
+    const mark = document.getElementById('marks');
+    const indicator = (e) => {
+      mark.style.top = e.offsetTop + 'px';
+      mark.style.height = e.offsetHeight + 'px';
+    };
+    items.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        indicator(e.target);
+      });
+    });
+  }, []);
+
   return (
     <>
       <Head>
@@ -14,110 +30,130 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      <main className="bg-[#354147] font-['Playfair_Display'] ">
+        <div className="relative">
+          <header className=" w-full h-auto relative">
+            <img src="/images/hg.png" alt="" className="absolute w-full bottom-0 h-auto object-cover object-bottom" />
+            <img src="/images/mg.png" alt="" className="relative w-full h-auto object-cover object-top" />
+            <img src="/images/vg.png" alt="" className="absolute w-full bottom-0 h-auto object-cover object-top" />
+          </header>
+          <div className="relative bg-gradient-to-t from-[#354147] via-[#354147]/40 to-[#354147]/10 w-full h-[300px] mt-[-300px] z-[900] "></div>
+          <span className="bg-radial"></span>
+          <section className="w-full absolute top-0 z-[999]">
+            <header className="max-w-7xl  mx-auto grid grid-cols-12 gap-20 text-white">
+              <nav className="mt-[4rem] flex w-full justify-between items-end col-span-full">
+                <h1 className="text-3xl">MNTN</h1>
+                <ul className="font-['Prompt'] flex max-h-fit gap-[40px]">
+                  <li>Equipment</li>
+                  <li>About us</li>
+                  <li>Blog</li>
+                </ul>
+                <span className="font-['Prompt'] flex justify-center items-center gap-2">
+                  <MdOutlineAccountCircle />
+                  Account
+                </span>
+              </nav>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
+              <div className="col-span-full mt-16 flex justify-between items-center">
+                <div className="flex-[1] text-start flex items-start justify-center gap-4 leading-4 text-lg flex-col">
+                  <h3 className="font-['Prompt'] write-vertical">Follow us</h3>
+                  <AiOutlineInstagram className="font-medium" />
+                  <BsTwitter className="font-medium" />
+                </div>
+                <div className="flex-[3] h-full">
+                  <p className="font-semibold flex items-center gap-4">
+                    <span className="inline-block w-[100px] h-1 bg-[#FBD784]"></span>
+                    <span className="uppercase tracking-widest font-['Prompt'] text-[#FBD784]">A Hiking guide</span>
+                  </p>
+                  <h1 className="text-[4.375rem] font-medium">Be prepared for the Mountains and beyond!</h1>
+                  <p className="font-['Prompt'] flex items-center text-lg gap-2 mt-6">
+                    Scroll down <HiArrowNarrowDown className="font-bold text-2xl" />
+                  </p>
+                </div>
+                <div className="relative flex-[1] text-end font-['Prompt'] flex gap-6 justify-end">
+                  <ul className="flex flex-col ">
+                    <li className="h-[50px] flex justify-end items-center cursor-pointer item">
+                      <a href="#" className="h-full"></a>Start
+                    </li>
+                    <li className="h-[50px] flex justify-end items-center cursor-pointer item">
+                      <a href="#01" className="h-full">
+                        01
+                      </a>
+                    </li>
+                    <li className="h-[50px] flex justify-end items-center cursor-pointer item">
+                      <a href="#02" className="h-full">
+                        02
+                      </a>
+                    </li>
+                    <li className="h-[50px] flex justify-end items-center  cursor-pointer item">
+                      <a href="#03" className="h-full">
+                        03
+                      </a>
+                    </li>
+                  </ul>
+                  <div className="w-[2px] bg-slate-400"></div>
+                  <div className="!w-[2px] rounded-[5px] h-[50px] top-0 right-0 absolute bg-white transition-all duration-75" id="marks"></div>
+                </div>
+              </div>
+            </header>
+          </section>
+          <section id="main-content" className="relative -top-36 z-[1000]">
+            <Content
+              image={'/images/01.png'}
+              heading={'What level of hiker are you?'}
+              text={'GET STARTED'}
+              desc={
+                'Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker. What type of hiker are you – novice, moderate, advanced moderate, expert, or expert backpacker?'
+              }
+              number={'01'}
+              id={'id'}
             />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
+            <Content
+              image={'/images/pm.png'}
+              heading={'Picking the right Hiking Gear!'}
+              text={'Hiking Essentials'}
+              desc={
+                'The nice thing about beginning hiking is that you don’t really need any special gear, you can probably get away with things you already have. Let’s start with clothing. A typical mistake hiking beginners make is wearing jeans and regular clothes, which will get heavy and chafe wif they get sweaty or wet.'
+              }
+              number={'02'}
+              className="flex-row-reverse mt-36"
+            />
+            <Content
+              image={'/images/clock.png'}
+              heading={'Understand Your Map & Timing'}
+              text={'where you go is the key'}
+              desc={
+                'To start, print out the hiking guide and map. If it’s raining, throw them in a Zip-Lock bag. Read over the guide, study the map, and have a good idea of what to expect. I like to know what my next landmark is as I hike. For example, I’ll read the guide and know that say, in a mile, I make a right turn at the junction..'
+              }
+              number={'03'}
+              className="mt-36"
+            />
+            <footer className="max-w-7xl flex gap-8 mx-auto text-white mt-36">
+              <div className="w-full h-full">
+                <h1 className="font-semibold tracking-widest text-xl mb-4">MNTN</h1>
+                <p className="font-['Prompt'] w-1/2">Get out there & discover your next slope, mountain & destination!</p>
+                <p className="font-['Prompt'] mt-28 text-slate-400">Copyright 2019 MNTN, Inc. Terms & Privacy</p>
+              </div>
+              <div className="w-full flex justify-between font-['Prompt'] font-normal">
+                <ul className="flex flex-col gap-4">
+                  <li className="text-[#FBD784] text-lg">More on The Blog</li>
+                  <li>About MNTN</li>
+                  <li>Contributors & Writers</li>
+                  <li>Write For Us</li>
+                  <li>Contact Us</li>
+                  <li>Privacy Policy</li>
+                </ul>
+                <ul className="flex flex-col gap-4">
+                  <li className="text-[#FBD784] text-lg">More on The MNTN</li>
+                  <li>The Team</li>
+                  <li>Jobs</li>
+                  <li>Press</li>
+                </ul>
+              </div>
+            </footer>
+          </section>
         </div>
       </main>
     </>
-  )
+  );
 }
